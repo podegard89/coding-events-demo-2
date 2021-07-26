@@ -39,8 +39,10 @@ public class EventController {
     @PostMapping("create")
     public String processCreateEventForm(@ModelAttribute @Valid Event newEvent,
                                          Errors errors, Model model) {
-        if(errors.hasErrors()) {
+        if (errors.hasErrors()) {
             model.addAttribute("title", "Create Event");
+            // added this line so types gets passed back in upon error in form
+            model.addAttribute("types", EventType.values());
             return "events/create";
         }
 
